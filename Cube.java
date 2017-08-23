@@ -70,7 +70,7 @@ public class Cube {
 			}
 		}
 		this.testCoords();
-		this.moveSet("rur'u'");
+		this.moveSet("r"); //TODO: test using this line.
 		System.out.println();
 		//this.testCoords();
 		for (Cubie piece : this.pieces) {
@@ -123,6 +123,8 @@ public class Cube {
 				c = set.charAt(i - 1);
 			} else if (c == '\'') {
 				c = set.charAt(i - 1);
+				// Need to add the character twice more.
+				moves.add(Character.toString(c));
 				moves.add(Character.toString(c));
 			}
 			moves.add(Character.toString(c));
@@ -133,7 +135,7 @@ public class Cube {
 		System.out.println();
 		for (String move : moves) {
 			System.out.println(move);
-			if (!this.rotate(move)) {
+			if (!this.rotate(move.charAt(0))) {
 				success = false;
 			}
 		}
@@ -141,12 +143,8 @@ public class Cube {
 	}
 
 	// Method to rotate one face 90 degrees clockwise.
-	public boolean rotate(String face) {
-		int[] indeces = new int[2];
-		face = face.toLowerCase();
-		int coord;
-		int side;
-		switch (face) {
+	public boolean rotate(char face) {
+		/*switch (face) {
 			case "l":
 				// y and z.
 				indeces[0] = 1;
@@ -191,10 +189,11 @@ public class Cube {
 				break;
 			default:
 				return false;
-		}
+		}*/
 		// Iterate through all pieces.
 		for (Cubie piece : this.pieces) {
-			int[] loc;
+			piece.moveTo(piece.getNewCoordsAfterMove(face));
+			/*int[] loc;
 			loc = piece.getCoords();
 			int repeat = 3;
 			if (loc[coord] == side) {
@@ -216,7 +215,7 @@ public class Cube {
 					//System.out.println(loc[0]+","+loc[1]+","+loc[2]+" => "+newLoc[0]+","+newLoc[1]+","+newLoc[2]);
 					piece.moveTo(newLoc);
 				}
-			}
+			}*/
 		}
 		return true;
 	}
