@@ -188,17 +188,17 @@ public abstract class Cubie {
 							case 0:
 								switch (this.coords[2]) {
 									case -2:
-										// UF(F) -> UL(L)
-										return new int[] {-2,1,0};
-									case -1:
-										// UF -> UL
-										return new int[] {-1,1,0};
-									case 1:
-										// UB -> UR
-										return new int[] {1,1,0};
-									case 2:
 										// UB(B) -> UR(R)
 										return new int[] {2,1,0};
+									case -1:
+										// UB -> UR
+										return new int[] {1,1,0};
+									case 1:
+										// UF -> UL
+										return new int[] {-1,1,0};
+									case 2:
+										// UF(F) -> UL(L)
+										return new int[] {-2,1,0};
 								}
 							case 1:
 								switch (this.coords[2]) {

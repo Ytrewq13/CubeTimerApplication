@@ -5,7 +5,7 @@ import mycubetimer.cubies.*;
 
 public class Cube {
 
-	// The faces.
+	// The pieces.
 	private Cubie[] pieces;
 
 	private boolean solved;
@@ -70,7 +70,9 @@ public class Cube {
 			}
 		}
 		this.testCoords();
-		this.moveSet("r"); //TODO: test using this line.
+		this.moveSet("l'"); //TODO: test using this line.
+		// I tested every single move and all primes, which are all correct.
+		// Should still test using multiple moves at once.
 		System.out.println();
 		//this.testCoords();
 		for (Cubie piece : this.pieces) {
@@ -123,8 +125,7 @@ public class Cube {
 				c = set.charAt(i - 1);
 			} else if (c == '\'') {
 				c = set.charAt(i - 1);
-				// Need to add the character twice more.
-				moves.add(Character.toString(c));
+				// Need to re-add the character twice more.
 				moves.add(Character.toString(c));
 			}
 			moves.add(Character.toString(c));
@@ -144,78 +145,9 @@ public class Cube {
 
 	// Method to rotate one face 90 degrees clockwise.
 	public boolean rotate(char face) {
-		/*switch (face) {
-			case "l":
-				// y and z.
-				indeces[0] = 1;
-				indeces[1] = 2;
-				coord = 0;
-				side = -1;
-				break;
-			case "b":
-				// x and y.
-				indeces[0] = 0;
-				indeces[1] = 1;
-				coord = 2;
-				side = -1;
-				break;
-			case "d":
-				// x and z.
-				indeces[0] = 0;
-				indeces[1] = 2;
-				coord = 1;
-				side = -1;
-				break;
-			case "u":
-				// x and z.
-				indeces[0] = 0;
-				indeces[1] = 2;
-				coord = 1;
-				side = 1;
-				break;
-			case "f":
-				// x and y.
-				indeces[0] = 0;
-				indeces[1] = 1;
-				coord = 2;
-				side = 1;
-				break;
-			case "r":
-				// y and z.
-				indeces[0] = 1;
-				indeces[1] = 2;
-				coord = 0;
-				side = 1;
-				break;
-			default:
-				return false;
-		}*/
 		// Iterate through all pieces.
 		for (Cubie piece : this.pieces) {
 			piece.moveTo(piece.getNewCoordsAfterMove(face));
-			/*int[] loc;
-			loc = piece.getCoords();
-			int repeat = 3;
-			if (loc[coord] == side) {
-				System.out.println("#" + loc[0] + "," + loc[1] + "," + loc[2]);
-				if ("u".equals(face) || "l".equals(face) || "b".equals(face)) {
-					repeat = 1;
-				}
-				for (int j = 0; j < repeat; j++) {
-					loc = piece.getCoords();
-					// This is a piece to perform the transform on.
-					int[] newLoc = new int[3];
-					int[] locTrans = new int[2]; // location to transform.
-					locTrans[0] = loc[indeces[0]];
-					locTrans[1] = loc[indeces[1]];
-					int[] nLocPart = Cube.transform(locTrans); // Transformed partial location.
-					newLoc[indeces[0]] = nLocPart[0];
-					newLoc[indeces[1]] = nLocPart[1];
-					newLoc[coord] = side;
-					//System.out.println(loc[0]+","+loc[1]+","+loc[2]+" => "+newLoc[0]+","+newLoc[1]+","+newLoc[2]);
-					piece.moveTo(newLoc);
-				}
-			}*/
 		}
 		return true;
 	}
